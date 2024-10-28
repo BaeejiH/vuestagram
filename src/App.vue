@@ -11,7 +11,7 @@
   </div>
 
   <ContainerBox :인스타데이터="인스타데이터" :step="step"
-  :전송한이미지="전송한이미지" @wrtie="작성한글=$event"/>
+  :전송한이미지="전송한이미지" @writetext="작성한글=$event"/>
   <button @click="more">더보기</button>
 <!-- 
 이미지 업로드한 것을 HTML에 보여주려면 
