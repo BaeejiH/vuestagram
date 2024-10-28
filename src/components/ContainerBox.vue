@@ -2,18 +2,14 @@
   <div>
 
    <div v-if="step == 0"> 
-    <PostBox :인스타데이터="인스타데이터[i]" :step="step" v-for="(a,i) in 인스타데이터" :key="i"/>
+    <PostBox :필터="필터" :인스타데이터="인스타데이터[i]" :step="step" v-for="(a,i) in 인스타데이터" :key="i"/>
    </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
     <div class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBoxCon v-for="(a,i) in 필터" :key="i" :전송한이미지="전송한이미지" :class="필터[i]"></FilterBoxCon>
     </div>
     </div>
 
@@ -29,11 +25,20 @@
 </template>
 
 <script>
+import FilterBoxCon from './FilterBoxCon.vue'
 import PostBox from './PostBox.vue'
-
 export default {
+    data(){
+        return{
+         필터: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+    "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+    "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+    
+        }
+    },
     components:{
-        PostBox:PostBox
+        PostBox:PostBox,
+        FilterBoxCon:FilterBoxCon
     },
     props:{
         인스타데이터:Array,
