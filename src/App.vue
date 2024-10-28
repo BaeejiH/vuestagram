@@ -9,12 +9,16 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerBox :인스타데이터="인스타데이터" :step="step"/>
+  <ContainerBox :인스타데이터="인스타데이터" :step="step"
+  :전송한이미지="전송한이미지"/>
   <button @click="more">더보기</button>
-
+<!-- 
+이미지 업로드한 것을 HTML에 보여주려면 
+1. FileReader()
+2.url.createObjecturl() -->
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
@@ -48,6 +52,7 @@ export default {
      더보기횟수 : 0,
      tap : 0,
      step : 0,
+     전송한이미지 : '',
     }
   },
   components: {
@@ -69,6 +74,13 @@ export default {
       .catch(err =>{
         console.error('데이터를 가져오는 실패:',err);
       })
+    },
+    upload(e){
+     let 파일 = e.target.files;
+     let url = URL.createObjectURL(파일[0]);
+     console.log(url);
+     this.전송한이미지 = url;//url을 생성한후 this.전송한이미지에 값을 할당해야함.
+     this.step++;
     }
   }
 }

@@ -16,7 +16,7 @@
 <script>
 export default {
     props: {
-        인스타데이터: Array, 
+        인스타데이터: Object, 
     }
 }
 </script>
