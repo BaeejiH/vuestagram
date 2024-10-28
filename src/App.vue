@@ -10,8 +10,7 @@
   </div>
 
   <ContainerBox :인스타데이터="인스타데이터"/>
-
-  <div class="sample-box"></div>
+  <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -22,8 +21,16 @@
 </template>
 
 <script>
+// Ajax
+// get요청 : url 하나로 요청하는 것을 get요청(데이터 서버에서 가져올 때)
+// post요청 : 서버로 데이터를 보낼 때
+// get/post 요청하면 브라우저가 새로고침됨
+// 그러나 Ajax를 쓴다면 새로고침 없이도 get/post 요청 가능
+// Ajax요청 방법 1.axios 2.fetch
 import ContainerBox from './components/ContainerBox.vue'
 import postdata from './assets/postdata.js'
+import axios from 'axios'
+
 export default {
   name: 'App',
   data(){
@@ -33,6 +40,24 @@ export default {
   },
   components: {
     ContainerBox:ContainerBox
+  },
+  methods : {
+    more(){
+      // post 요청방식
+      // axios.post('url',{name : 'kim'}).then().catch((err)=>{
+      //   err
+      // })
+
+      axios.get('https://codingapple1.github.io/vue/more1.json')
+      .then((결과)=>{// arrow함수는 바깥에 잇던 this를 그대로 사용함.
+        console.log(결과.data);
+        this.인스타데이터.push(결과.data)
+      }),
+      axios.get('https://codingapple1.github.io/vue/more0.json')
+      .then((결과0)=>{
+        this.인스타데이터.push(결과0.data)
+      })
+    }
   }
 }
 </script>

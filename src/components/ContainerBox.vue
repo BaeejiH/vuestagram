@@ -1,8 +1,6 @@
 <template>
   <div>
-    <PostBox :인스타데이터="인스타데이터[0]"/>
-    <PostBox :인스타데이터="인스타데이터[1]"/>
-    <PostBox :인스타데이터="인스타데이터[2]"/>
+    <PostBox  :인스타데이터="인스타데이터[i]" v-for="(a,i) in 인스타데이터" :key="i"/>
   </div>
 </template>
 
