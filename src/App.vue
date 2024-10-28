@@ -7,7 +7,7 @@
       <li v-if="step ==1" @click="step++">Next</li>
       <li v-if="step ==2" @click="publish">발행</li>
     </ul>
-    <img src="./assets/logo.png" class="logo" />
+    <img src="./assets/WW.jpg" class="logo" />
   </div>
 
   <ContainerBox :인스타데이터="인스타데이터" :step="step"
@@ -114,7 +114,7 @@ ul {
   list-style-type: none;
 }
 .logo {
-  width: 22px;
+  width: 30px;
   margin: auto;
   display: block;
   position: absolute;

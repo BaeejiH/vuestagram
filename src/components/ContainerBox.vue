@@ -9,7 +9,10 @@
     <div v-if="step == 1">
     <div class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="filters">
-        <FilterBoxCon v-for="(a,i) in 필터" :key="i" :전송한이미지="전송한이미지" :class="필터[i]"></FilterBoxCon>
+        <FilterBoxCon v-for="(a,i) in 필터" :key="i" :전송한이미지="전송한이미지" :class="필터[i]">
+            <span>{{필터[i]}}</span>
+        </FilterBoxCon>
+        <!-- 그냥 class="필터[i]"로 설정하면 문자열로 인식해서 필터이름이 바인딩되지 않음. :<-- 이거 꼭 써야함 -->
     </div>
     </div>
 
@@ -25,6 +28,9 @@
 </template>
 
 <script>
+//slot props
+//1. <slot :자식데이ㅓ="자식데이터">
+//2. 부모는<template v-slot="작명"> 후에 {{작명.자식데이터}}
 import FilterBoxCon from './FilterBoxCon.vue'
 import PostBox from './PostBox.vue'
 export default {
