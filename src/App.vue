@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerBox :인스타데이터="인스타데이터"/>
+  <ContainerBox :인스타데이터="인스타데이터" :step="step"/>
   <button @click="more">더보기</button>
 
   <div class="footer">
@@ -18,6 +18,15 @@
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
+
+ <!-- <div v-if="tap == 0">내용1</div>
+ <div v-if="tap == 1">내용2</div>
+ <div v-if="tap == 2">내용3</div>
+<button @click="tap = 0">버튼0</button>
+<button @click="tap = 1">버튼1</button>
+<button @click="tap = 2">버튼2</button> -->
+
+
 </template>
 
 <script>
@@ -36,6 +45,9 @@ export default {
   data(){
     return{
      인스타데이터 : postdata,
+     더보기횟수 : 0,
+     tap : 0,
+     step : 0,
     }
   },
   components: {
@@ -47,15 +59,15 @@ export default {
       // axios.post('url',{name : 'kim'}).then().catch((err)=>{
       //   err
       // })
-
-      axios.get('https://codingapple1.github.io/vue/more1.json')
-      .then((결과)=>{// arrow함수는 바깥에 잇던 this를 그대로 사용함.
-        console.log(결과.data);
-        this.인스타데이터.push(결과.data)
-      }),
-      axios.get('https://codingapple1.github.io/vue/more0.json')
-      .then((결과0)=>{
-        this.인스타데이터.push(결과0.data)
+      
+      //get요청에서 주소는 백틱으로 표시
+      axios.get(`https://codingapple1.github.io/vue/more${this.더보기횟수}.json`)
+      .then(결과=>{// arrow함수는 바깥에 잇던 this를 그대로 사용함.
+        this.인스타데이터.push(결과.data);
+        this.더보기횟수++;
+      })
+      .catch(err =>{
+        console.error('데이터를 가져오는 실패:',err);
       })
     }
   }
