@@ -1,16 +1,17 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="step--">Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step ==1" @click="step++">Next</li>
+      <li v-if="step ==2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
   <ContainerBox :인스타데이터="인스타데이터" :step="step"
-  :전송한이미지="전송한이미지"/>
+  :전송한이미지="전송한이미지" @wrtie="작성한글=$event"/>
   <button @click="more">더보기</button>
 <!-- 
 이미지 업로드한 것을 HTML에 보여주려면 
@@ -48,17 +49,33 @@ export default {
   name: 'App',
   data(){
     return{
+     작성한글 : '',
      인스타데이터 : postdata,
      더보기횟수 : 0,
      tap : 0,
      step : 0,
-     전송한이미지 : '',
+     전송한이미지 : [],
     }
   },
   components: {
     ContainerBox:ContainerBox
   },
   methods : {
+    publish(){
+      var 내게시물 = {
+      name: "Bae jihun",
+      userImage: "https://picsum.photos/100?random=3",
+      postImage: this.전송한이미지,
+      likes: 36,
+      date: "May 15",
+      liked: false,
+      content: this.작성한글,
+      filter: "perpetua"
+      };
+      this.인스타데이터.unshift(내게시물); // 왼쪽의 array에 자료집어넣어줌
+      this.전송한이미지 = [];
+      this.step=0;
+    },
     more(){
       // post 요청방식
       // axios.post('url',{name : 'kim'}).then().catch((err)=>{
@@ -79,12 +96,12 @@ export default {
      let 파일 = e.target.files;
      let url = URL.createObjectURL(파일[0]);
      console.log(url);
-     this.전송한이미지 = url;//url을 생성한후 this.전송한이미지에 값을 할당해야함.
+     this.전송한이미지.push(url);//url을 생성한후 this.전송한이미지에 값을 할당해야함.
      this.step++;
     }
   }
 }
-</script>
+</script> 
 
 <style>
 

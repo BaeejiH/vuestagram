@@ -2,7 +2,7 @@
   <div>
 
    <div v-if="step == 0"> 
-    <PostBox :인스타데이터="인스타데이터[i]" v-for="(a,i) in 인스타데이터" :key="i"/>
+    <PostBox :인스타데이터="인스타데이터[i]" :step="step" v-for="(a,i) in 인스타데이터" :key="i"/>
    </div>
 
     <!-- 필터선택페이지 -->
@@ -21,7 +21,7 @@
     <div  v-if="step == 2">
     <div class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea @input="$emit('writetext',$event.target.value)" class="write-box">write!</textarea>
     </div>
     </div> 
     </div>
