@@ -37,10 +37,10 @@ vuex
 1. 미리 store.js에 수정방법을 정의해두고
 2. 그 방법을 컴포넌트에서 소환해서 수정해야함
 -->
-<h4>안녕 {{$store.state.name}}</h4>
-<button @click="$store.state.name = '박'">버튼</button>
+<h4>안녕 {{$store.state.age}}</h4>
+<button @click="$store.commit('나이증가',10000000000000000000)">버튼</button>
 
-
+"$store.commit('좋아요증가')"
 </template>
 
 <script>
