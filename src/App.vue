@@ -40,7 +40,6 @@ vuex
 <h4>안녕 {{$store.state.age}}</h4>
 <button @click="$store.commit('나이증가',10000000000000000000)">버튼</button>
 
-"$store.commit('좋아요증가')"
 </template>
 
 <script>

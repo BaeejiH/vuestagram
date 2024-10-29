@@ -2,7 +2,7 @@
   <div>
 
    <div v-if="step == 0"> 
-    <PostBox :필터="필터" :인스타데이터="인스타데이터[i]" :step="step" v-for="(a,i) in 인스타데이터" :key="i"/>
+    <PostBox :index="i" :필터="필터" :인스타데이터="인스타데이터[i]" :step="step" v-for="(a,i) in 인스타데이터" :key="i"/>
    </div>
 
     <!-- 필터선택페이지 -->
