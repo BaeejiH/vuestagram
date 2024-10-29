@@ -43,6 +43,12 @@ vuex
 <p>{{$store.state.more}}</p>
  <button @click="$store.dispatch('getData')">더보기</button>
  <!-- actions를 부탁하는 함수 dispatch -->
+
+ <p>{{now1}} {{카운터}}</p>
+ <button @click="카운터++">버트은</button>
+
+ <p>{{name}} {{age}}</p>
+
 </template>
 
 <script>
@@ -55,11 +61,13 @@ vuex
 import ContainerBox from './components/ContainerBox.vue'
 import postdata from './assets/postdata.js'
 import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'App',
   data(){
     return{
+    카운터 : 0,
      작성한글 : '',
      인스타데이터 : postdata,
      더보기횟수 : 0,
@@ -72,7 +80,20 @@ export default {
   components: {
     ContainerBox:ContainerBox
   },
+  computed: {
+    now1(){ // 계산결과용 저장 함수
+      return new Date() // computed 함수는 사용해도 실행되지 않음. 처음 실행하고 값을 간직.
+    },
+    now3(){
+      return this.$store.state.name
+    },
+    ...mapState(['name','likes','age']), // 다른 computes 함수랑 함께 쓰려면 필요
+  },
   methods : {
+    ...mapMutations(['setMore','좋아요증가']),
+    now(){
+      return new Date() // 사용할때마다 실행.
+    },
     publish(){
       var 내게시물 = {
       name: "Bae jihun",

@@ -1,6 +1,17 @@
 import axios from "axios";
 import { createStore } from "vuex";
 
+// actions 구조
+// actions : {
+//     데이터가져오기(context){
+//         axios.get('').then(()=>{
+//             성공시 실행할 코드
+//            context.commit('mutations함수명') --> state변경 및 수정이 필요할시 context도 추가
+//         })
+//     }
+// }
+
+
 
 const store = createStore({
     state() {
