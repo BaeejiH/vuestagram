@@ -7,7 +7,7 @@
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-    <div class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
+    <div :class="선택한필터" class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="filters">
         <FilterBoxCon v-for="(a,i) in 필터" :key="i" :전송한이미지="전송한이미지" :class="필터[i]">
             <span>{{필터[i]}}</span>
@@ -18,7 +18,7 @@
 
     <!-- 글작성페이지 -->
     <div  v-if="step == 2">
-    <div class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
+    <div  :class="선택한필터" class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="write">
         <textarea @input="$emit('writetext',$event.target.value)" class="write-box">write!</textarea>
     </div>
@@ -38,8 +38,8 @@ export default {
         return{
          필터: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
     "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
-    "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
-    
+    "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+        선택한필터: '',
         }
     },
     components:{
@@ -50,6 +50,11 @@ export default {
         인스타데이터:Array,
         step: Number,
         전송한이미지:String,
+    },
+    mounted(){
+        this.$emitter.on('applyFilter',(a)=>{
+            this.선택한필터 = a // 선택한 필터안에 저장을 해야 데이터바인딩을 함.
+        })
     }
 }
 </script>

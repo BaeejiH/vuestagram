@@ -1,5 +1,5 @@
 <template>
-  <div class=" filter-item" :style="`background-image:url(${전송한이미지})`">
+  <div @click="fire" class=" filter-item" :style="`background-image:url(${전송한이미지})`">
     <slot></slot>
   </div>
 
@@ -12,6 +12,14 @@
 
 <script>
 export default {
+  // mitt로 데이터 전송하는 법
+  // 1.this.emitter.emit()으로 전송
+  // 2.this.emitter.on()으로 수신
+  methods :{
+    fire(){
+      this.$emitter.emit('applyFilter',this.필터)
+    }
+  },
  props:{
   전송한이미지:Array,
   필터:Array,

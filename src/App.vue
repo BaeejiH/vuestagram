@@ -55,7 +55,13 @@ export default {
      tap : 0,
      step : 0,
      전송한이미지 : [],
+     선택한필터 : '',
     }
+  },
+  mounted(){
+    this.$emitter.on('applyFilter',(a)=>{
+      this.선택한필터 = a
+    })
   },
   components: {
     ContainerBox:ContainerBox
@@ -70,7 +76,7 @@ export default {
       date: "May 15",
       liked: false,
       content: this.작성한글,
-      filter: "perpetua"
+      filter: this.선택한필터
       };
       this.인스타데이터.unshift(내게시물); // 왼쪽의 array에 자료집어넣어줌
       this.전송한이미지 = [];
