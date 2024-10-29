@@ -9,7 +9,7 @@
     <div v-if="step == 1">
     <div :class="선택한필터" class="upload-image" :style="`background-image:url(${전송한이미지})`"></div>
     <div class="filters">
-        <FilterBoxCon :a="a" v-for="a in 필터" :key="a" :전송한이미지="전송한이미지">
+        <FilterBoxCon :a="a" v-for="(a,i) in 필터" :key="a" :전송한이미지="전송한이미지">
            {{필터[i]}}
         </FilterBoxCon>
         <!-- 그냥 class="필터[i]"로 설정하면 문자열로 인식해서 필터이름이 바인딩되지 않음. :<-- 이거 꼭 써야함 -->
@@ -49,7 +49,7 @@ export default {
     props:{
         인스타데이터:Array,
         step: Number,
-        전송한이미지:String,
+        전송한이미지:Array,
     },
     mounted(){
         this.emitter.on('applyFilter',(a)=>{

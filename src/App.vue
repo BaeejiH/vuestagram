@@ -31,6 +31,15 @@
 <button @click="tap = 1">버튼1</button>
 <button @click="tap = 2">버튼2</button> -->
 
+<!-- 
+vuex 
+원래는 데이터를 변경하면 안됨
+1. 미리 store.js에 수정방법을 정의해두고
+2. 그 방법을 컴포넌트에서 소환해서 수정해야함
+-->
+<h4>안녕 {{$store.state.name}}</h4>
+<button @click="$store.state.name = '박'">버튼</button>
+
 
 </template>
 
