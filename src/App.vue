@@ -12,7 +12,7 @@
 
   <ContainerBox :인스타데이터="인스타데이터" :step="step"
   :전송한이미지="전송한이미지" @writetext="작성한글=$event"/>
-  <button @click="more">더보기</button>
+ 
 <!-- 
 이미지 업로드한 것을 HTML에 보여주려면 
 1. FileReader()
@@ -39,7 +39,10 @@ vuex
 -->
 <h4>안녕 {{$store.state.age}}</h4>
 <button @click="$store.commit('나이증가',10000000000000000000)">버튼</button>
-
+<!-- mutations를 부탁하는 함수 comit -->
+<p>{{$store.state.more}}</p>
+ <button @click="$store.dispatch('getData')">더보기</button>
+ <!-- actions를 부탁하는 함수 dispatch -->
 </template>
 
 <script>

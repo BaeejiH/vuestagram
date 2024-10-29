@@ -1,4 +1,6 @@
+import axios from "axios";
 import { createStore } from "vuex";
+
 
 const store = createStore({
     state() {
@@ -7,9 +9,13 @@ const store = createStore({
             age : 99,
             likes : [30,60,90],
             likesState : [false,false,false], // 좋아요가 눌렸지 현재 상태
+            more : {},
         }
     },
     mutations : { //state 수정방법 정의하는 곳
+        setMore(state,data){
+            state.more =data
+        },
         이름변경(state){
             state.name = 'park'
         },
@@ -24,6 +30,14 @@ const store = createStore({
                 state.likes[index]--
                 state.likesState[index] = false; // 상태를 false로 변경, =
             }
+        }
+    },
+    actions: {//ajax 요청 하는 곳
+        getData(context){
+            axios.get(`https://codingapple1.github.io/vue/more0.json`).then((a)=>{//ajax로 데이터가져옴
+                console.log(a.data);
+                context.commit('setMore',a.data) // mutations를 이용해서 state에 저장
+            })
         }
     }
 })
