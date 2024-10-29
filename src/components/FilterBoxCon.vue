@@ -1,5 +1,5 @@
 <template>
-  <div @click="fire" class=" filter-item" :style="`background-image:url(${전송한이미지})`">
+  <div @click="fire" :class="a + ' filter-item'" :style="`background-image:url(${전송한이미지})`">
     <slot></slot>
   </div>
 
@@ -17,12 +17,13 @@ export default {
   // 2.this.emitter.on()으로 수신
   methods :{
     fire(){
-      this.$emitter.emit('applyFilter',this.필터)
+      this.emitter.emit('applyFilter',this.a);
     }
   },
  props:{
   전송한이미지:Array,
   필터:Array,
+  a: String,
  }
 }
 </script>

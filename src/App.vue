@@ -58,11 +58,6 @@ export default {
      선택한필터 : '',
     }
   },
-  mounted(){
-    this.$emitter.on('applyFilter',(a)=>{
-      this.선택한필터 = a
-    })
-  },
   components: {
     ContainerBox:ContainerBox
   },
@@ -82,6 +77,11 @@ export default {
       this.전송한이미지 = [];
       this.step=0;
     },
+     mounted(){
+    this.emitter.on('applyFilter',(a)=>{
+      this.선택한필터 = a
+    })
+  },
     more(){
       // post 요청방식
       // axios.post('url',{name : 'kim'}).then().catch((err)=>{
