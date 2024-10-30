@@ -26,7 +26,7 @@
     </div>
 
     <div v-if="step ==3">
-        <MyPageFollower/>
+        <MyPageFollower :one="1"/>
     </div>
  
 </template>
