@@ -24,6 +24,10 @@
     </div>
     </div> 
     </div>
+
+    <div v-if="step ==3">
+        <MyPageFollower/>
+    </div>
  
 </template>
 
@@ -32,6 +36,7 @@
 //1. <slot :자식데이ㅓ="자식데이터">
 //2. 부모는<template v-slot="작명"> 후에 {{작명.자식데이터}}
 import FilterBoxCon from './FilterBoxCon.vue'
+import MyPageFollower from './MyPageFollower.vue'
 import PostBox from './PostBox.vue'
 export default {
     data(){
@@ -44,7 +49,8 @@ export default {
     },
     components:{
         PostBox:PostBox,
-        FilterBoxCon:FilterBoxCon
+        FilterBoxCon:FilterBoxCon,
+        MyPageFollower:MyPageFollower
     },
     props:{
         인스타데이터:Array,

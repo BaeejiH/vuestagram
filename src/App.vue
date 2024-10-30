@@ -72,7 +72,7 @@ export default {
      인스타데이터 : postdata,
      더보기횟수 : 0,
      tap : 0,
-     step : 0,
+     step : 3,
      전송한이미지 : [],
      선택한필터 : '',
     }
